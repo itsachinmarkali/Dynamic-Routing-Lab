@@ -19,7 +19,7 @@ R2 acts as the **Area Border Router (ABR)** connecting both areas.
 
 ## 🏗️ Topology
 
-![Topology](topology.png)
+![Topology](Topology.png)
 
 ---
 
@@ -88,6 +88,13 @@ All IP addresses are private.
 ## 🚀 Author
 
 Sachin Markali
+
+---
+
+## 🔐 Security Note
+This project is created for educational purposes only.  
+No real network credentials, passwords, or sensitive data are included.  
+All IP addresses used are private and for simulation only.
 
 
 
