@@ -13,3 +13,6 @@ Thumbs.db
 
 # Ignore backup files
 *~
+*.key
+*.pem
+.env
