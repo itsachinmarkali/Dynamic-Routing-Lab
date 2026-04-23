@@ -1,0 +1,81 @@
+========================
+ROUTER R1 CONFIG
+================
+
+enable
+configure terminal
+
+interface g0/0
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+
+interface g0/1
+ip address 10.0.12.1 255.255.255.252
+no shutdown
+
+router ospf 1
+network 192.168.1.0 0.0.0.255 area 0
+network 10.0.12.0 0.0.0.3 area 0
+
+router rip
+version 2
+network 10.0.0.0
+network 192.168.0.0
+no auto-summary
+
+========================
+ROUTER R2 CONFIG
+================
+
+enable
+configure terminal
+
+interface g0/0
+ip address 10.0.12.2 255.255.255.252
+no shutdown
+
+interface g0/1
+ip address 10.0.23.1 255.255.255.252
+no shutdown
+
+router ospf 1
+network 10.0.12.0 0.0.0.3 area 0
+network 10.0.23.0 0.0.0.3 area 1
+area 1 range 192.168.2.0 255.255.255.0
+redistribute rip subnets
+
+router rip
+version 2
+network 10.0.0.0
+network 192.168.0.0
+no auto-summary
+redistribute ospf 1 metric 1
+
+========================
+ROUTER R3 CONFIG
+================
+
+enable
+configure terminal
+
+interface g0/0
+ip address 10.0.23.2 255.255.255.252
+no shutdown
+
+interface g0/1
+ip address 192.168.2.1 255.255.255.0
+no shutdown
+
+router ospf 1
+network 10.0.23.0 0.0.0.3 area 1
+network 192.168.2.0 0.0.0.255 area 1
+
+router rip
+version 2
+network 10.0.0.0
+network 192.168.0.0
+no auto-summary
+
+========================
+END OF CONFIG
+=============
